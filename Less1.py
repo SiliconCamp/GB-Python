@@ -1,4 +1,5 @@
 __author__ = 'Тинкчян Феликс'
+# Репозиторий https://github.com/SiliconCamp/GB-Python
 
 # Для задания №1
 import random
