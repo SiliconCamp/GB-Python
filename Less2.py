@@ -19,7 +19,7 @@ import math
 # Генерация списка
 
 print("_____________________________")
-print("Task #1")
+print("Task #1 - OK")
 print("Generating the list ...")
 RandListLenght = random.randint(10, 50) # Определяем количество элементов в списке от 10 до 50 элементов
 print("List lenght (elements):", RandListLenght)
@@ -40,6 +40,7 @@ for i in RandList:
         if Sqrt == int(Sqrt):
             RandSqrtList.append(int(Sqrt))
 
+print("Generating result ...")
 print("Sqrted list: ", RandSqrtList)
 
 
@@ -52,14 +53,25 @@ print("_____________________________")
 print("Task #2")
 print("Generating the date ...")
 
-RandDate = random.randint(500000,800000)
+RandDate = random.randint(364878,800000) # Диапазон 364878 = 01.01.1000 до 1095728 = 01.01.3001
 RandDate = datetime.datetime.fromordinal(RandDate)
 
-RandDate = datetime.datetime.strptime(str(RandDate), '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')
+print(RandDate.year)
+print(RandDate.day)
+print(RandDate.month)
 
-print("Random date =", RandDate)
+DayList = ["первое", "второе", "третье", "четвертое", "пятое", "шестое", "седьмое", "восьмое", "девятое", "десятое",
+           "одиннадцатое", "двенадцатое", "тринадцатое", "четырнадцатое", "пятндцатое", "шестнадцатое", "семнадцатое",
+           "весемнадцатое", "девятнадцатое", "двадцатое", "двадцать первое", "двадцать второе", "двадцать третье",
+           "двадцать четвертое", "двадцать пятое", "двадцать шестое", "двадцать седьмое", "двадцать восьмое",
+           "двадцать девятое", "тридцатое", "тридцать первое"]
+MonthList = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
+
+d = DayList[RandDate.day]
+m = MonthList[RandDate.month]
 
 
+print(d, m, RandDate.year, "года")
 
 
 # Задача-3: Напишите алгоритм, заполняющий список произвольными целыми числами
@@ -68,7 +80,7 @@ print("Random date =", RandDate)
 # для получения случайного числа используйте функцию randint() модуля random
 
 print("_____________________________")
-print("Task #3")
+print("Task #3 - OK")
 print("Generating the list ..")
 n = random.randint(1, 50) # Определяем количество элементов в списке от 1 до 50 элементов, либо задать принудительно
 print("List lenght n =", n)
@@ -95,10 +107,18 @@ print("Generating the list ..")
 RandListLenght = random.randint(1, 50) # Определяем количество элементов в списке от 1 до 50 элементов
 print("List lenght (elements):", RandListLenght)
 
-RandList = []
+lst1 = []
+lst2 = []
 
-while len(RandList) != RandListLenght:
+while len(lst1) != RandListLenght:
     num = random.randint(-100,100) # Генерируем элемент от -100 до 100
-    RandList.append(num)
+    lst1.append(num)
 
-print("Random list: ", RandList)
+# lst1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 2, 2, 3, 10, 10, 5, 5, 5, 2, 3] # Принудительный тестовый список с многми дублями
+
+print("Random list: ", lst1)
+
+print("a) de-duplicated list:", sorted(set(lst1)))
+
+newlist = [ii for n,ii in enumerate(lst1) if ii  in lst1[:n]]
+print ("б) unique values list:", sorted(list(set(lst1) - set(newlist))))
