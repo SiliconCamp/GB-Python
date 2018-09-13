@@ -1,4 +1,5 @@
 import random
+import math
 
 # Задание-1:
 # Напишите функцию, возвращающую ряд Фибоначчи с n-элемента до m-элемента.
@@ -81,3 +82,49 @@ print("Gnome sorted list:", sort_to_max(rand_list))
 # Задача-4:
 # Даны четыре точки А1(х1, у1), А2(x2 ,у2), А3(x3 , у3), А4(х4, у4).
 # Определить, будут ли они вершинами параллелограмма.
+# РЕШЕНИЕ:
+# Исходя из сути условия точки расположены в двухмерном пространстве.
+print("_____________________________")
+
+
+def abs_vector(coor_x1, coor_y1, coor_x2, coor_y2):
+    abs_vect_len = math.sqrt((coor_x2 - coor_x1) ** 2 + (coor_y2 - coor_y1) ** 2)
+    return abs_vect_len
+
+
+print("Task #4")
+print("Generating points...")
+x1, y1 = random.randint(1,100), random.randint(1,100)
+x2, y2 = random.randint(1,100), random.randint(1,100)
+x3, y3 = random.randint(1,100), random.randint(1,100)
+x4, y4 = x1+(x3-x2), y3+(y1-y2) # Для тестирования вставить после равно x1+(x3-x2), y3+(y1-y2)
+print("A1=", x1, y1)
+print("A2=", x2, y2)
+print("A3=", x3, y3)
+print("A4=", x4, y4)
+
+# Определяем расстояния от точки к A1 к трем остальным
+len_1_2 = abs_vector(x1, y1, x2, y2)
+print("A1A2 =", len_1_2)
+len_1_3 = abs_vector(x1, y1, x3, y3)
+print("A1A3=", len_1_3)
+len_1_4 = abs_vector(x1, y1, x4, y4)
+print("A1A4=", len_1_4)
+
+# Проверям все три возможных комбинации диагональной вершины
+# Внутри каждого случая проверяем выполнение условия о равенстве противолежащих сторон
+if (len_1_2 > len_1_3) & (len_1_2 > len_1_4):
+    print("max == A1A2 ==", len_1_2)
+    if (len_1_3 == abs_vector(x2, y2, x4, y4)) & (len_1_4 == abs_vector(x2, y2, x3, y3)):
+        print("Parallelogram = A1A3A2A4")
+elif (len_1_3 > len_1_2) & (len_1_3 > len_1_4):
+    print("max == A1A3 ==", len_1_3)
+    if (len_1_2 == abs_vector(x3, y3, x4, y4)) & (len_1_4 == abs_vector(x3, y3, x2, y2)):
+        print("Parallelogram = A1A3A2A4")
+else:
+    print("max == A1A4 ==", len_1_4)
+    if (len_1_2 == abs_vector(x4, y4, x3, y3)) & (len_1_3 == abs_vector(x4, y4, x2, y2)):
+        print("Parallelogram = A1A3A2A4")
+
+
+
